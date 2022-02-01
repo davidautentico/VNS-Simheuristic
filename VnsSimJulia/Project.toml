@@ -2,3 +2,7 @@ name = "VnsSimJulia"
 uuid = "8c0b8472-b9ec-40fd-a46f-ef64ffe85dc4"
 authors = ["david <davidautentico@gmail.com>"]
 version = "0.1.0"
+
+[deps]
+CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
+Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
