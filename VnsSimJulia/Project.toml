@@ -1,0 +1,4 @@
+name = "VnsSimJulia"
+uuid = "8c0b8472-b9ec-40fd-a46f-ef64ffe85dc4"
+authors = ["david <davidautentico@gmail.com>"]
+version = "0.1.0"
