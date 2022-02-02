@@ -1,10 +1,15 @@
 module main
 
-include("vnsSim.jl")
+include("vns_simheuristic.jl")
 
-test = vnsSim.vns_sim(5,4)
-greet() = print("Hello World!")
+print("**** VNS based Simheuristic ****");
 
-print(test)
+# read data
+
+# call algorithm
+
+# print results
+
+print("**** Stopped ****")
 
 end # module
