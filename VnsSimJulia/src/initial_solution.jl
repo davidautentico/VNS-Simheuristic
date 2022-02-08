@@ -1,36 +1,50 @@
 module initial_solution
-
 export initial_solution
+using StatsBase
 
 # project_list could be a maxtrix n x m -> n assets and m properties
 # asset : id expected_retribution(ri) standard_deviation (si)
-function initial_solution(project_list, max_risk, k_min, k_max)
+# model for local_solver?¿
+function initial_solution(project_list, project_selected_ids, max_risk, k_min, k_max)
+
+    # number of projects
+    total_projects_size = size(project_selected_ids)
 
     # init solution
-    feasible_solution = zeros(12)
+    feasible_solution = zeros(10)
     is_feasible = false
-    aux_project_list <- copy_project_list(project_list)
 
-    # bucle
-    # while not is_feasible do
-    #   s <- randPortfolioSize(k_min, k_max)
-    #   selected_projects <- select_preselected_projects(project_list)
-    #   project_list <- remove_project(project_list, select_preselected_projects)
-    #   portfolio <- add_project_to_portfolio(portfolio, selected_projects)
-    #   current_portfolio_size < get_portfolio_size(portfolio)
-    #   while current_portfolio_size < s do 
-    #       project <- select_project_randomly(project_list)
-    #       project_list <- remove_project(project_list, project)
-    #       portfolio <- add_project_to_portfolio(project)
-    #        current_portfolio_size++
-    #   end
-    #   init_sol <- local_solver(portfolio)
-    #   if (satisfy_constraints(init_sol, maxRisk))  
-    #       is_feasible <- true
-    #   else
-    #       project_list <- copy_project_list(aux_project_list)
-    #       portfolio <- delete_portfolio(portfolio)
-    #   end
-    #  end
+    # get the number of preselected projects
+    selected_ids_map = countmap(project_selected_ids)
+    total_selected_size = calculate_selected_ids[1]
+    
+    # loop
+    while !is_feasible do
+        portfolioSize = rand(k_min, k_max)
+        # copy initial values with preselected ids
+        initial_solution_ids = copy(project_selected_ids)
+        while total_selected_size < portfolioSize do 
+            candidate_idx = rand(1, total_projects_size)
+            if initial_solution_ids[candidate_idx] == 0
+                initial_solution_ids[candidate_idx] = 1
+                total_selected_size += 1
+            end
+        end
+
+        # solution candidate is built
+        candidate_solution <- zeros(portfolioSize)
+        idx = 0
+        for i in total_projects_size do 
+            if initial_solution_ids[i] == 1
+                candidate_solution[idx] = project_list[i]
+                idx +=1
+            end
+        end
+
+        # call to local solver
+        feasible_solution = local_solver(candidate_solution)
+        if (satisfy_constraints(solution, maxRisk))
+            is_feasible = true
+    end
     return feasible_solution
 end
