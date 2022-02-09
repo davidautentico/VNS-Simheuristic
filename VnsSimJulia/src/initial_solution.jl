@@ -7,6 +7,7 @@ using StatsBase
 # model for local_solver?¿
 function initial_solution(project_list, project_selected_ids, max_risk, k_min, k_max)
 
+    
     # number of projects
     total_projects_size = size(project_selected_ids)
 

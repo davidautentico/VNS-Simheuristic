@@ -1,0 +1,8 @@
+[deps]
+COSMO = "1e616198-aa4e-51ec-90a2-23f7fbd31d8d"
+COSMOAccelerators = "bbd8fffe-5ad0-4d78-a55e-85575421b4ac"
+IterTools = "c8e1da08-722c-5040-9ed9-7db0dc04731e"
+MutableArithmetics = "d8a4904e-b15c-11e9-3269-09a3773c0cb0"
+QDLDL = "bfc457fd-c171-5ab7-bd9e-d5dbfc242d63"
+Reexport = "189a3867-3050-52da-a836-e630ba90ab69"
+StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
