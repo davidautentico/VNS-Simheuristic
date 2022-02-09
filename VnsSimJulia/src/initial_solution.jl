@@ -5,6 +5,17 @@ using StatsBase
 # project_list could be a maxtrix n x m -> n assets and m properties
 # asset : id expected_retribution(ri) standard_deviation (si)
 # model for local_solver?¿
+# each project needs a min budget and a request budget (max)
+# npv = net present value = prsent value of future inflows - present value of future outflows
+# goal = max ( npv of the portfolio)
+# cash flows = modeled as random variables
+# interest rate = modeled as random variables 
+# Benefit i in period t = Cit*xi /(1 + Rit)^t
+# Cit is cashflows of xi in period t
+# Rit is random discount rate
+# NPVi = SUM (Bit) wih t=1..m
+# NPV = SUM (NPVi) for all i
+# goal = MAX (E[NPV])
 function initial_solution(project_list, project_selected_ids, max_risk, k_min, k_max)
 
     
@@ -18,7 +29,7 @@ function initial_solution(project_list, project_selected_ids, max_risk, k_min, k
     # get the number of preselected projects
     selected_ids_map = countmap(project_selected_ids)
     total_selected_size = calculate_selected_ids[1]
-    
+
     # loop
     while !is_feasible do
         portfolioSize = rand(k_min, k_max)
