@@ -1,4 +1,4 @@
-module initial_solution
+module InitialSolution
 export initial_solution
 using StatsBase
 

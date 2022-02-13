@@ -1,7 +1,6 @@
-using CSV
-using DataFrames
+using CSV, DataFrames, InputsManager
  
- A = [0,1,1,0]
+ A = [0,1,1,0]s
  b = filter((x)->x==1,A)
  println(b)
 

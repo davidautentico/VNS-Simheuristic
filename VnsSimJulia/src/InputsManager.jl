@@ -1,9 +1,11 @@
-module inputs_manager
+module InputsManager
+
+using Asset, Constraints
 
 # read assets: return;standardDeviation;mandatory;qmin;qmax;
 function readAssets(assetFilePath)
 
-    assets = Asset[]
+    assets = AssetData[]
     npvData = NpvData()
     csv_reader = CSV.File(assetFilePath; header = 1, delim = ";")
     i = 1
@@ -29,18 +31,18 @@ function readAssets(assetFilePath)
         requestedBudget = 0
         npvalue = 0
         for cfItem in cfs
-            npvalue += cfItem / (1 + discountRate) ^ cfsSize
+            npvalue += cfItem / (1 + discountRate)^cfsSize
             if (cfItem < 0)
                 requestedBudget += cfItem
             end
         end
-        minRequestedBudget = abs(requestedBudget * minPerBudget);
+        minRequestedBudget = abs(requestedBudget * minPerBudget)
         standardDeviation = npvalue * 0.05
 
         npvData = NpvData(cf0, cf1, cf2, cf3, cf4, discountDate, npvalue)
 
         # asset
-        asset = Asset(
+        asset = AssetData(
             i,
             row.returns,
             standardDeviation,
@@ -62,6 +64,18 @@ end
 # read assets correlations and create covariance matrix
 
 # read constraints: kmin, kmax, total_budget
+function readConstraints(constraintsFilePath)
+    csv_reader = CSV.File(constraintsFilePath; header = 1, delim = ";")
+    kMin = 0
+    kMax = 0
+    totalBudget = 0
+    for row in csv_reader
+        kMin = row.kmin
+        kMax = row.kmax
+        totalBudget = row.total_budget
+    end
 
-# read npvdata
+    return ConstraintsData(kMin, kMax, totalBudget)
+end
+
 end
