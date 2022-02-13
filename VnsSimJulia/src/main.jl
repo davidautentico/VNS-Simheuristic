@@ -2,7 +2,7 @@ module main
 
 include("vns_simheuristic.jl")
 
-print("**** VNS based Simheuristic ****");
+print("**** VNS based Simheuristic ****")
 
 # read data
 base_dir = pwd()
@@ -12,13 +12,14 @@ constraints_info_file = base_dir * "\\VnsSimJulia\\data\\constraints_v1.csv"
 
 # decode asset
 
+
 # decode correlations
 
 # decode constraints and npv data
 
-num_assets = 10;
-assets_corr_matrix = zeros((num_assets, num_assets));
-assets_cov_matrix = zeros((num_assets, num_assets));
+num_assets = 10
+assets_corr_matrix = zeros((num_assets, num_assets))
+assets_cov_matrix = zeros((num_assets, num_assets))
 
 # call algorithm
 

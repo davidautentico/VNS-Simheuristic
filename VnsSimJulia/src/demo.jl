@@ -3,7 +3,14 @@ using DataFrames
  
  A = [0,1,1,0]
  b = filter((x)->x==1,A)
- print(b)
+ println(b)
+
+ F = Float64[]
+ push!(F,1.1)
+ push!(F,1.6)
+
+ println(F)
+ println(size(F)[1])
 
  # probar lectura de csv
  base_dir = pwd()
