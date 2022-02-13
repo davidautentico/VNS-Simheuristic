@@ -13,9 +13,13 @@ using CSV, DataFrames, InputsManager
 
  # probar lectura de csv
  base_dir = pwd()
- csv_path = base_dir * "\\VnsSimJulia\\data\\constraints_v1.csv"
- print(csv_path)
- csv_reader = CSV.File(csv_path;header=1, delim=";")
+ csvPath = base_dir * "\\VnsSimJulia\\data\\constraints_v1.csv"
+ print( csvPath)
+ csv_reader = CSV.File( csvPath;header=1, delim=";")
  for row in csv_reader
     println("values: $(row.kmin), $(row.kmax), $(row.total_budget)")
 end
+
+# probar función de lectura de Constraints
+constraints = InputsManager.readConstraints(csvPath)
+print(constraints)
